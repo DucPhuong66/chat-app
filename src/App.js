@@ -1,7 +1,7 @@
 import './App.css';
 import Login from './components/Login'
 import ChatRoom from './components/ChatRoom'
-import {Route, Routes, BrowserRouter } from 'react-router-dom'
+import {Route, Routes, BrowserRouter, Link } from 'react-router-dom'
 import AuthProvider from './Context/AuthProvider';
 
 function App() {
