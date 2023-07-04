@@ -12,20 +12,22 @@ export default function AuthProvider({ children }) {
 
   React.useEffect(() => {
     const unsubscribed = auth.onAuthStateChanged((user) => {
-    //   console.log({ user });
+      console.log({ user });
       if (user) {
-        const { displayName, email, uid, photoUrl } = user;
+        const { displayName, email, uid, photoURL } = user;
         setUser({
           displayName,
           email,
           uid,
-          photoUrl,
+          photoURL,
         });
-        console.log( user.displayName);
+        // console.log( user.displayName);
         setIsLoading(false);
         navigate("/");
+        return
       }
-      // navigate("/");
+      setIsLoading(false);
+      navigate("/login");
       // navigate('/')  fix login with facebook
     });
     // clean up function

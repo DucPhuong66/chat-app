@@ -1,19 +1,25 @@
 import { Row, Col, Typography, Button } from "antd";
-import firebase, {auth} from '../../firebase/config'
+import firebase, {auth, db} from '../../firebase/config'
 import {useNavigate } from 'react-router-dom'
+import { addDocument } from "../../firebase/services";
 
 const {Title} = Typography
 
-//const fbProvider = new firebase.auth.FacebookAuthProvider()
 const ggProvider = new firebase.auth.GoogleAuthProvider()
 
 function Login() {
-  // const handleFbLogin = () => {
-  //   auth.signInWithPopup(fbProvider)
-  // };
-
-  const handleGgLogin = () => {
-    auth.signInWithPopup(ggProvider)
+  const handleGgLogin = async () => {
+      const {additionalUserInfo, user} = await auth.signInWithPopup(ggProvider)
+      if (additionalUserInfo?.isNewUser) { 
+          addDocument('users', {
+              displayName: user.displayName,
+              email: user.email,
+              photoUrl: user.photoURL,
+              uid: user.displayName,
+              providerId: additionalUserInfo.providerId
+          })
+      }
+      // console.log({ data })
   };
   
  

@@ -39,7 +39,7 @@ const ButtonGroupStyled = styled.div`
 `;
 
 const ContentStyled = styled.div`
-  height: calc(100vh - 56px);
+  height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
   padding: 11px;
@@ -52,7 +52,7 @@ const MessageListStyled = styled.div`
 
 `;
 
-const FormStyled = styled.div`
+const FormStyled = styled(Form)`
     display: flex;
     justify-content: space-between;
     align-items: center;
